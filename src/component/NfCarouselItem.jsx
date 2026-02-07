@@ -2,12 +2,14 @@ import { Component } from "react";
 import NfCarouselImage from "./NfCarouselImage";
 import { urlAPI } from "./constants";
 import { Alert } from "bootstrap/dist/js/bootstrap.bundle.min";
+import { Spinner } from "react-bootstrap";
 
 class NfCarouselItem extends Component {
     state = {
         arrayOfMovies: [],
         totalResults: "0",
         search: this.props.search,
+        loading: true,
     };
 
     getData() {
@@ -49,6 +51,7 @@ class NfCarouselItem extends Component {
                                 ...data.Search,
                             ],
                             totalResults: data.totalResults,
+                            loading: false,
                         }));
                         fetch(searchUrl + "&page=3")
                             .then((res) => {
@@ -91,7 +94,9 @@ class NfCarouselItem extends Component {
     render() {
         return (
             <>
-                {" "}
+                {this.state.loading === true && (
+                    <Spinner animation="grow" variant="info" />
+                )}{" "}
                 <div className={"carousel-item " + this.props.active}>
                     <div className="row g-1 flex-nowrap mx-0">
                         {this.props.position === 1 &&
