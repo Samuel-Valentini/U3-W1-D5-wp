@@ -16,6 +16,8 @@ class NfCarouselItem extends Component {
         const searchString = this.state.search;
         const searchUrl = urlAPI + searchString;
 
+        // in questa fetch recupererò 3 pagine in maniera tale da avere 30 film a disposizione su cui fare il ciclo
+
         fetch(searchUrl)
             .then((res) => {
                 if (res.ok) {
@@ -94,6 +96,13 @@ class NfCarouselItem extends Component {
                     <div className="row g-1 flex-nowrap mx-0">
                         {this.props.position === 1 &&
                             this.state.arrayOfMovies
+                                .filter(
+                                    (movie, index, arr) =>
+                                        index ===
+                                        arr.findIndex(
+                                            (x) => x.imdbID === movie.imdbID,
+                                        ),
+                                )
                                 .slice(0, 6)
                                 .map((movie) => {
                                     return (
@@ -108,6 +117,13 @@ class NfCarouselItem extends Component {
 
                         {this.props.position === 2 &&
                             this.state.arrayOfMovies
+                                .filter(
+                                    (movie, index, arr) =>
+                                        index ===
+                                        arr.findIndex(
+                                            (x) => x.imdbID === movie.imdbID,
+                                        ),
+                                )
                                 .slice(6, 12)
                                 .map((movie) => {
                                     return (
@@ -122,6 +138,13 @@ class NfCarouselItem extends Component {
 
                         {this.props.position === 3 &&
                             this.state.arrayOfMovies
+                                .filter(
+                                    (movie, index, arr) =>
+                                        index ===
+                                        arr.findIndex(
+                                            (x) => x.imdbID === movie.imdbID,
+                                        ),
+                                )
                                 .slice(12, 18)
                                 .map((movie) => {
                                     return (
