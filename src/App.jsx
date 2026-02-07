@@ -10,6 +10,8 @@ import { hello } from "./component/constants";
 
 console.log(hello);
 
+// grazie al bottone giallo in alto nella pagina si può passare da home a edit profile
+
 function App() {
     return (
         <>
