@@ -1,7 +1,6 @@
 import { Component } from "react";
 import NfCarouselImage from "./NfCarouselImage";
 import { urlAPI } from "./constants";
-import { Alert } from "bootstrap/dist/js/bootstrap.bundle.min";
 import { Spinner } from "react-bootstrap";
 
 class NfCarouselItem extends Component {
@@ -112,7 +111,12 @@ class NfCarouselItem extends Component {
                     <p className="text-center text-white">no results</p>
                 )}
                 {Array.isArray(this.state.arrayOfMovies) &&
-                    this.state.arrayOfMovies.length > 0 && (
+                    this.state.arrayOfMovies.length > 0 &&
+                    (this.props.position === 1 ||
+                        (this.props.position === 2 &&
+                            Number(this.state.totalResults) > 6) ||
+                        (this.props.position === 3 &&
+                            Number(this.state.totalResults) > 12)) && (
                         <div className={"carousel-item " + this.props.active}>
                             <div className="row g-1 flex-nowrap mx-0">
                                 {this.props.position === 1 &&
