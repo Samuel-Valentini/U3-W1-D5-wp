@@ -15,9 +15,18 @@ class NfCarouselBar extends Component {
                     <div className="col col-12">
                         <div id={this.props.id} className="carousel slide">
                             <div className="carousel-inner">
-                                <NfCarouselItem active="active"></NfCarouselItem>
-                                <NfCarouselItem active=""></NfCarouselItem>
-                                <NfCarouselItem active=""></NfCarouselItem>
+                                <NfCarouselItem
+                                    active="active"
+                                    position={1}
+                                    search={this.props.search}></NfCarouselItem>
+                                <NfCarouselItem
+                                    active=""
+                                    position={2}
+                                    search={this.props.search}></NfCarouselItem>
+                                <NfCarouselItem
+                                    active=""
+                                    position={3}
+                                    search={this.props.search}></NfCarouselItem>
                             </div>
                             <button
                                 className="carousel-control-prev"

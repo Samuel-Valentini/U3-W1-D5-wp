@@ -10,12 +10,21 @@ class NfMain extends Component {
                 <main>
                     <section className="container">
                         <NfTitleBar />
-                        <NfCarouselBar title="Trending Now" id="trendingNow" />
                         <NfCarouselBar
-                            title="Watch It Again"
-                            id="watchItAgain"
+                            title="Star Wars"
+                            id="starWars"
+                            search="Star Wars"
                         />
-                        <NfCarouselBar title="New Releases" id="newReleases" />
+                        <NfCarouselBar
+                            title="Dragon Ball"
+                            id="dragonBall"
+                            search="Dragon Ball"
+                        />
+                        <NfCarouselBar
+                            title="Star Trek"
+                            id="starTrek"
+                            search="Star Trek"
+                        />
                     </section>
                 </main>
             </>

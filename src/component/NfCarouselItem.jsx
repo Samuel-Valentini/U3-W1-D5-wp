@@ -1,43 +1,138 @@
 import { Component } from "react";
 import NfCarouselImage from "./NfCarouselImage";
+import { urlAPI } from "./constants";
+import { Alert } from "bootstrap/dist/js/bootstrap.bundle.min";
 
 class NfCarouselItem extends Component {
+    state = {
+        arrayOfMovies: [],
+        totalResults: "0",
+        search: this.props.search,
+    };
+
+    getData() {
+        console.log("getData online");
+
+        const searchString = this.state.search;
+        const searchUrl = urlAPI + searchString;
+
+        fetch(searchUrl)
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error(res.status);
+                }
+            })
+            .then((data) => {
+                // console.log(data);
+                this.setState({
+                    arrayOfMovies: data.Search,
+                    totalResults: data.totalResults,
+                });
+
+                fetch(searchUrl + "&page=2")
+                    .then((res) => {
+                        if (res.ok) {
+                            return res.json();
+                        } else {
+                            throw new Error(res.status);
+                        }
+                    })
+                    .then((data) => {
+                        // console.log(data);
+                        this.setState((prev) => ({
+                            arrayOfMovies: [
+                                ...prev.arrayOfMovies,
+                                ...data.Search,
+                            ],
+                            totalResults: data.totalResults,
+                        }));
+                        fetch(searchUrl + "&page=3")
+                            .then((res) => {
+                                if (res.ok) {
+                                    return res.json();
+                                } else {
+                                    throw new Error(res.status);
+                                }
+                            })
+                            .then((data) => {
+                                // console.log(data);
+                                this.setState((prev) => ({
+                                    arrayOfMovies: [
+                                        ...prev.arrayOfMovies,
+                                        ...data.Search,
+                                    ],
+                                    totalResults: data.totalResults,
+                                }));
+                            })
+                            .catch((er) => {
+                                console.log("catch: " + er);
+                                alert("Errore rilevato: " + er);
+                            });
+                    })
+                    .catch((er) => {
+                        console.log("catch: " + er);
+                        alert("Errore rilevato: " + er);
+                    });
+            })
+            .catch((er) => {
+                console.log("catch: " + er);
+                alert("Errore rilevato: " + er);
+            });
+    }
+
+    componentDidMount() {
+        this.getData();
+    }
+
     render() {
         return (
             <>
                 {" "}
                 <div className={"carousel-item " + this.props.active}>
                     <div className="row g-1 flex-nowrap mx-0">
-                        <NfCarouselImage
-                            title="Star Wars: Episode IV - A New Hope"
-                            year="1977"
-                            src="https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_SX300.jpg"
-                        />
-                        <NfCarouselImage
-                            title="Star Wars: Episode IV - A New Hope"
-                            year="1977"
-                            src="https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_SX300.jpg"
-                        />
-                        <NfCarouselImage
-                            title="Star Wars: Episode IV - A New Hope"
-                            year="1977"
-                            src="https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_SX300.jpg"
-                        />
-                        <NfCarouselImage
-                            title="Star Wars: Episode IV - A New Hope"
-                            year="1977"
-                            src="https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_SX300.jpg"
-                        />
-                        <NfCarouselImage
-                            title="Star Wars: Episode IV - A New Hope"
-                            year="1977"
-                            src="https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_SX300.jpg"
-                        />
-                        <NfCarouselImage
-                            title="Star Wars: Episode IV - A New Hope"
-                            year="1977"
-                            src="https://m.media-amazon.com/images/M/MV5BOGUwMDk0Y2MtNjBlNi00NmRiLTk2MWYtMGMyMDlhYmI4ZDBjXkEyXkFqcGc@._V1_SX300.jpg"
-                        />
+                        {this.props.position === 1 &&
+                            this.state.arrayOfMovies
+                                .slice(0, 6)
+                                .map((movie) => {
+                                    return (
+                                        <NfCarouselImage
+                                            key={movie.imdbID}
+                                            title={movie.Title}
+                                            year={movie.Year}
+                                            src={movie.Poster}
+                                        />
+                                    );
+                                })}
+
+                        {this.props.position === 2 &&
+                            this.state.arrayOfMovies
+                                .slice(6, 12)
+                                .map((movie) => {
+                                    return (
+                                        <NfCarouselImage
+                                            key={movie.imdbID}
+                                            title={movie.Title}
+                                            year={movie.Year}
+                                            src={movie.Poster}
+                                        />
+                                    );
+                                })}
+
+                        {this.props.position === 3 &&
+                            this.state.arrayOfMovies
+                                .slice(12, 18)
+                                .map((movie) => {
+                                    return (
+                                        <NfCarouselImage
+                                            key={movie.imdbID}
+                                            title={movie.Title}
+                                            year={movie.Year}
+                                            src={movie.Poster}
+                                        />
+                                    );
+                                })}
                     </div>
                 </div>
             </>
