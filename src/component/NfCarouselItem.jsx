@@ -13,7 +13,7 @@ class NfCarouselItem extends Component {
     };
 
     getData() {
-        console.log("getData online");
+        // console.log("getData online");
 
         const searchString = this.state.search;
         const searchUrl = urlAPI + searchString;

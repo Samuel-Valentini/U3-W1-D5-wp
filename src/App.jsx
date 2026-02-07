@@ -3,11 +3,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./style.css";
 import "./App.css";
-import NfNavbar from "./component/NfNavbar";
-import NfMain from "./component/NfMain";
+import PageChooser from "./component/PageChooser";
 import NfFooter from "./component/NfFooter";
 
 import { hello } from "./component/constants";
+
 console.log(hello);
 
 function App() {
@@ -15,8 +15,7 @@ function App() {
         <>
             {" "}
             <div className="index">
-                <NfNavbar></NfNavbar>
-                <NfMain></NfMain>
+                <PageChooser />
                 <NfFooter></NfFooter>
             </div>
         </>
