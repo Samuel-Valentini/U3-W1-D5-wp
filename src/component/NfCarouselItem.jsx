@@ -51,6 +51,8 @@ class NfCarouselItem extends Component {
                                 ...data.Search,
                             ],
                             totalResults: data.totalResults,
+                            // ho messo il loading alla generazione del secondo array perché mi sembrava
+                            // visivamente più interessante
                             loading: false,
                         }));
                         fetch(searchUrl + "&page=3")
@@ -74,16 +76,25 @@ class NfCarouselItem extends Component {
                             .catch((er) => {
                                 console.log("catch: " + er);
                                 alert("Errore rilevato: " + er);
+                                this.setState({
+                                    loading: false,
+                                });
                             });
                     })
                     .catch((er) => {
                         console.log("catch: " + er);
                         alert("Errore rilevato: " + er);
+                        this.setState({
+                            loading: false,
+                        });
                     });
             })
             .catch((er) => {
                 console.log("catch: " + er);
                 alert("Errore rilevato: " + er);
+                this.setState({
+                    loading: false,
+                });
             });
     }
 
