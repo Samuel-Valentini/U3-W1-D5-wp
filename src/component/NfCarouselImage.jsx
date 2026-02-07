@@ -8,7 +8,7 @@ class NfCarouselImage extends Component {
                     <a href="#">
                         <img
                             src={this.props.src}
-                            className="d-block w-100 change-ratio"
+                            className="d-block w-100 change-ratio img-cont"
                             alt={`${this.props.year} - ${this.props.title} - Poster`}
                             onError={(err) =>
                                 (err.currentTarget.src =

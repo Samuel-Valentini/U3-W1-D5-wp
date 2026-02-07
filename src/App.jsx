@@ -13,7 +13,6 @@ console.log(hello);
 function App() {
     return (
         <>
-            {" "}
             <div className="index">
                 <PageChooser />
                 <NfFooter></NfFooter>

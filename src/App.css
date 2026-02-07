@@ -14,3 +14,12 @@
     z-index: 10000;
     padding: 12px 16px;
 }
+
+.img-cont {
+    transition: transform 0.2s;
+    transform-origin: center;
+}
+
+.img-cont:hover {
+    transform: scale(1.1);
+}
