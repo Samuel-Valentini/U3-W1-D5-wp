@@ -31,7 +31,7 @@ class NfCarouselItem extends Component {
             .then((data) => {
                 // console.log(data);
                 this.setState({
-                    arrayOfMovies: data.Search,
+                    arrayOfMovies: data.Search ?? [],
                     totalResults: data.totalResults,
                 });
 
@@ -47,8 +47,8 @@ class NfCarouselItem extends Component {
                         // console.log(data);
                         this.setState((prev) => ({
                             arrayOfMovies: [
-                                ...prev.arrayOfMovies,
-                                ...data.Search,
+                                ...(prev.arrayOfMovies ?? []),
+                                ...(data.Search ?? []),
                             ],
                             totalResults: data.totalResults,
                             // ho messo il loading alla generazione del secondo array perché mi sembrava
@@ -67,8 +67,8 @@ class NfCarouselItem extends Component {
                                 // console.log(data);
                                 this.setState((prev) => ({
                                     arrayOfMovies: [
-                                        ...prev.arrayOfMovies,
-                                        ...data.Search,
+                                        ...(prev.arrayOfMovies ?? []),
+                                        ...(data.Search ?? []),
                                     ],
                                     totalResults: data.totalResults,
                                 }));
@@ -108,72 +108,86 @@ class NfCarouselItem extends Component {
                 {this.state.loading === true && (
                     <Spinner animation="grow" variant="info" />
                 )}{" "}
-                <div className={"carousel-item " + this.props.active}>
-                    <div className="row g-1 flex-nowrap mx-0">
-                        {this.props.position === 1 &&
-                            this.state.arrayOfMovies
-                                .filter(
-                                    (movie, index, arr) =>
-                                        index ===
-                                        arr.findIndex(
-                                            (x) => x.imdbID === movie.imdbID,
-                                        ),
-                                )
-                                .slice(0, 6)
-                                .map((movie) => {
-                                    return (
-                                        <NfCarouselImage
-                                            key={movie.imdbID}
-                                            title={movie.Title}
-                                            year={movie.Year}
-                                            src={movie.Poster}
-                                        />
-                                    );
-                                })}
+                {this.state.arrayOfMovies.length === 0 && (
+                    <p className="text-center text-white">no results</p>
+                )}
+                {Array.isArray(this.state.arrayOfMovies) &&
+                    this.state.arrayOfMovies.length > 0 && (
+                        <div className={"carousel-item " + this.props.active}>
+                            <div className="row g-1 flex-nowrap mx-0">
+                                {this.props.position === 1 &&
+                                    this.state.arrayOfMovies
+                                        .filter(
+                                            (movie, index, arr) =>
+                                                index ===
+                                                arr.findIndex(
+                                                    (x) =>
+                                                        x.imdbID ===
+                                                        movie.imdbID,
+                                                ),
+                                        )
+                                        .slice(0, 6)
+                                        .map((movie) => {
+                                            return (
+                                                <NfCarouselImage
+                                                    key={movie.imdbID}
+                                                    title={movie.Title}
+                                                    year={movie.Year}
+                                                    src={movie.Poster}
+                                                />
+                                            );
+                                        })}
 
-                        {this.props.position === 2 &&
-                            this.state.arrayOfMovies
-                                .filter(
-                                    (movie, index, arr) =>
-                                        index ===
-                                        arr.findIndex(
-                                            (x) => x.imdbID === movie.imdbID,
-                                        ),
-                                )
-                                .slice(6, 12)
-                                .map((movie) => {
-                                    return (
-                                        <NfCarouselImage
-                                            key={movie.imdbID}
-                                            title={movie.Title}
-                                            year={movie.Year}
-                                            src={movie.Poster}
-                                        />
-                                    );
-                                })}
+                                {Number(this.state.totalResults) >= 12 &&
+                                    this.props.position === 2 &&
+                                    this.state.arrayOfMovies
+                                        .filter(
+                                            (movie, index, arr) =>
+                                                index ===
+                                                arr.findIndex(
+                                                    (x) =>
+                                                        x.imdbID ===
+                                                        movie.imdbID,
+                                                ),
+                                        )
+                                        .slice(6, 12)
+                                        .map((movie) => {
+                                            return (
+                                                <NfCarouselImage
+                                                    key={movie.imdbID}
+                                                    title={movie.Title}
+                                                    year={movie.Year}
+                                                    src={movie.Poster}
+                                                />
+                                            );
+                                        })}
 
-                        {this.props.position === 3 &&
-                            this.state.arrayOfMovies
-                                .filter(
-                                    (movie, index, arr) =>
-                                        index ===
-                                        arr.findIndex(
-                                            (x) => x.imdbID === movie.imdbID,
-                                        ),
-                                )
-                                .slice(12, 18)
-                                .map((movie) => {
-                                    return (
-                                        <NfCarouselImage
-                                            key={movie.imdbID}
-                                            title={movie.Title}
-                                            year={movie.Year}
-                                            src={movie.Poster}
-                                        />
-                                    );
-                                })}
-                    </div>
-                </div>
+                                {Number(this.state.totalResults) >= 18 &&
+                                    this.props.position === 3 &&
+                                    this.state.arrayOfMovies
+                                        .filter(
+                                            (movie, index, arr) =>
+                                                index ===
+                                                arr.findIndex(
+                                                    (x) =>
+                                                        x.imdbID ===
+                                                        movie.imdbID,
+                                                ),
+                                        )
+                                        .slice(12, 18)
+                                        .map((movie) => {
+                                            return (
+                                                <NfCarouselImage
+                                                    key={movie.imdbID}
+                                                    title={movie.Title}
+                                                    year={movie.Year}
+                                                    src={movie.Poster}
+                                                />
+                                            );
+                                        })}
+                            </div>
+                        </div>
+                    )}
             </>
         );
     }
