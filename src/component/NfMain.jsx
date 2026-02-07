@@ -16,9 +16,9 @@ class NfMain extends Component {
                             search="Star Wars"
                         />
                         <NfCarouselBar
-                            title="Dragon Ball"
-                            id="dragonBall"
-                            search="Dragon Ball"
+                            title="Ghost in the Shell"
+                            id="ghostInTheShell"
+                            search="Ghost in the Shell"
                         />
                         <NfCarouselBar
                             title="Star Trek"

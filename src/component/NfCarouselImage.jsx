@@ -10,6 +10,10 @@ class NfCarouselImage extends Component {
                             src={this.props.src}
                             className="d-block w-100 change-ratio"
                             alt={`${this.props.year} - ${this.props.title} - Poster`}
+                            onError={(err) =>
+                                (err.currentTarget.src =
+                                    "/assets/img/imageNotAvailable.png")
+                            }
                         />
                     </a>
                 </div>
