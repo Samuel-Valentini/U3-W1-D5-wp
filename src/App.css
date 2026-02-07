@@ -1,0 +1,16 @@
+.change-ratio {
+    aspect-ratio: 3/5;
+    object-fit: cover;
+    object-position: top;
+}
+
+.my-card {
+    height: 100%;
+}
+
+.netflix-nav .navbar-collapse.show,
+.netflix-nav .navbar-collapse.collapsing {
+    background: #000;
+    z-index: 10000;
+    padding: 12px 16px;
+}

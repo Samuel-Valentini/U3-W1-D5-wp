@@ -1,0 +1,185 @@
+// Custom bootstrap
+
+@import "./bs/functions";
+
+// Include any default variable overrides here - START
+
+$headings-color-dark: #ffffff;
+$carousel-control-width: 5%;
+
+// Include any default variable overrides here - END
+
+@import "./bs/variables";
+@import "./bs/variables-dark";
+
+// Include any default map overrides here - START
+
+// Include any default map overrides here - END
+
+// Add additional custom code here - START
+
+// Add additional custom code here - end
+
+@import "./bs/bootstrap.scss";
+
+// Custom css
+
+body {
+    background-color: #141414;
+}
+
+.index {
+    h1 {
+        max-width: fit-content;
+    }
+
+    .logo {
+        height: 50px;
+    }
+
+    .gappx {
+        padding-inline: 2px;
+        padding-block: 2px;
+    }
+
+    .netflix-nav {
+        height: 56px;
+        background: #141414;
+    }
+
+    .netflix-nav .nav-link {
+        color: #b3b3b3;
+        font-size: 0.9rem;
+        padding: 0 0.5rem;
+    }
+    .netflix-nav .nav-link:hover {
+        color: #fff;
+    }
+    .netflix-nav .nav-link.active {
+        color: #fff;
+    }
+
+    .nav-icon {
+        color: #fff;
+        font-size: 1.1rem;
+        line-height: 1;
+        opacity: 0.9;
+    }
+    .nav-icon:hover {
+        opacity: 1;
+    }
+
+    .kids-link {
+        color: #fff !important;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        font-size: 0.9rem;
+        padding: 0;
+    }
+
+    .avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 2px;
+        object-fit: cover;
+    }
+
+    .footer-netflix .footer-link {
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .footer-netflix .footer-link:hover {
+        text-decoration: underline;
+        color: #6c757d;
+    }
+
+    .footer-netflix .social-icon {
+        color: #6c757d;
+        font-size: 1.25rem;
+        line-height: 1;
+        text-decoration: none;
+        opacity: 0.9;
+    }
+
+    .footer-netflix .social-icon:hover {
+        opacity: 1;
+    }
+
+    .display-none-custom {
+        display: block !important;
+    }
+
+    #menu-space {
+        height: 200px;
+        display: none;
+    }
+
+    #right-arrow {
+        font-size: 3rem;
+        transform: translateX(100%);
+        pointer-events: auto;
+        display: inline-block;
+    }
+
+    #left-arrow {
+        font-size: 3rem;
+    }
+
+    .display-none-custom-2 {
+        display: none !important;
+    }
+}
+
+.edit-profile {
+    header {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(20, 20, 20, 1) 100%
+        );
+
+        > a > img {
+            height: 50px;
+            margin-block: 9px;
+            margin-inline: 8px;
+        }
+    }
+
+    h1 {
+        font-size: calc(2.5rem + 1.5vw);
+    }
+
+    .form-control {
+        &:disabled {
+            background-color: #666666;
+        }
+    }
+
+    .fs-7 {
+        font-size: 0.9rem;
+    }
+
+    .fs-8 {
+        font-size: 0.8rem;
+    }
+
+    .letter-spacing {
+        letter-spacing: 1px;
+    }
+
+    #hover:hover {
+        background-color: #666666 !important;
+    }
+
+    .fitter {
+        width: fit-content;
+        margin-inline: auto;
+    }
+
+    .nav-link {
+        color: #b3b3b3;
+        font-size: 0.95rem;
+        padding: 0 0.55rem;
+    }
+}
